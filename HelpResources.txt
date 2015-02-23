@@ -1,0 +1,20 @@
+Using The Linux Shell:
+	http://linuxcommand.org/learning_the_shell.php
+
+Python for VB Programmers:
+	http://www.raspberrypi.org/learning/python-for-vb-programmers/
+
+Learning Python with Raspberry PI:
+	http://www.raspberrypi.org/learning-python-with-raspberry-pi/
+
+eLinux.org's RPi Hub:
+	http://elinux.org/index.php?title=RPi_Hub&redirect=no
+
+Physical Stuff:
+	http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/robot/buttons_and_switches/
+
+Wiring a switch to GPIO:
+	http://www.raspberrypi.org/forums/viewtopic.php?f=44&t=28952
+
+LED Resistor Calculator:
+	http://led.linear1.org/1led.wiz
