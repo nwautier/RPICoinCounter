@@ -18,3 +18,6 @@ Wiring a switch to GPIO:
 
 LED Resistor Calculator:
 	http://led.linear1.org/1led.wiz
+
+Geany IDE:
+	http://www.geany.org/Download/Releases
