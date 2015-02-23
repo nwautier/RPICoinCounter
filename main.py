@@ -24,10 +24,20 @@
 
 
 
-def main():
-	
-	return 0
+CountQuarter = 0
+ValueQuarter = (CountQuarter * .25)
+CountDime = 0
+ValueDime = (CountDime * .10)
+CountNickle = 0
+ValueNickle = (CountNickle * .05)
+CountPenny = 0
+ValuePenny = (CountPenny * .01)
+CountCoins = 0
+ValueCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
 
-if __name__ == '__main__':
-	main()
-
+def UpdateValues
+	ValueQuarter = (CountQuarter * .25)
+	ValueDime = (CountDime * .10)
+	ValueNickle = (CountNickle * .05)
+	ValuePenny = (CountPenny * .01)
+	ValueCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
