@@ -25,16 +25,27 @@
 
 
 # Declarations and initializations
+global CountQuarter
 CountQuarter = 0
+global ValueQuarter
 ValueQuarter = .25
+global CountDime
 CountDime = 0
+global ValueDime
 ValueDime = .10
+global CountNickle
 CountNickle = 0
+global ValueNickle
 ValueNickle = .05
+global CountPenny
 CountPenny = 0
+global ValuePenny
 ValuePenny = .01
+global CountTotalCoins
 CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
+global ValueTotalCoins
 ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+
 
 
 def TotalsUpdate(): # Update TotalCount and TotalValue
@@ -45,7 +56,7 @@ TotalsUpdate()
 
 def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 	CoinIn = CoinIn.upper()
-	if CoinIn == "":     # Update All Values from current Counts
+	if CoinIn == "RESET":     # Update All Values from current Counts
 		ValueQuarter = (CountQuarter * .25)
 		ValueDime = (CountDime * .10)
 		ValueNickle = (CountNickle * .05)
@@ -69,3 +80,16 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		TotalsUpdate()
 	else:                 # If no input, do nothing
 		return()
+
+def ListCount():
+		print ("  Q    D    N    P  ")
+		print ("  %s    %s    %s    %s  ") % (CountQuarter, CountDime, CountNickle, CountPenny)
+
+
+global a
+a="FIRST RUN"
+
+while a:
+	ListCount()
+	a=input("Whatcha Got?")
+	UpdateValues(a)
