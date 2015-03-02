@@ -43,19 +43,19 @@ def UpdateValues(CoinIn) # Recieve a single coin and update all relevent counts 
 		ValueNickle = (CountNickle * .05)
 		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
-	elif CoinIn == "Q":  # Quarter
+	elif CoinIn == "Q" or CoinIn == "q":  # Quarter
 		CountQuarter += 1
 		ValueQuarter = (CountQuarter * .25)		
 		TotalsUpdate()
-	elif CoinIn == "D":  # Dime
+	elif CoinIn == "D" or CoinIn == "d":  # Dime
 		CountDime += 1
 		ValueDime = (CountDime * .25)
 		TotalsUpdate()
-	elif CoinIn == "N":  # Nickle
+	elif CoinIn == "N" or CoinIn == "n":  # Nickle
 		CountNickle += 1
 		ValueNickle = (CountNickle * .25)
 		TotalsUpdate()
-	elif CoinIn == "P":  # Penny
+	elif CoinIn == "P" or CoinIn == "p":  # Penny
 		CountPenny += 1
 		ValuePenny = (CountPenny * .25)
 		TotalsUpdate()
