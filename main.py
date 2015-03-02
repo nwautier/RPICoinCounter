@@ -22,22 +22,48 @@
 #  
 #  
 
-
-
+#  Declarations and initializations
 CountQuarter = 0
-ValueQuarter = (CountQuarter * .25)
+ValueQuarter = .25
 CountDime = 0
-ValueDime = (CountDime * .10)
+ValueDime = .10
 CountNickle = 0
-ValueNickle = (CountNickle * .05)
+ValueNickle = .05
 CountPenny = 0
-ValuePenny = (CountPenny * .01)
-CountCoins = 0
-ValueCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+ValuePenny = .01
+CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
+ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
 
-def UpdateValues
-	ValueQuarter = (CountQuarter * .25)
-	ValueDime = (CountDime * .10)
-	ValueNickle = (CountNickle * .05)
-	ValuePenny = (CountPenny * .01)
-	ValueCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+UpdateValues()
+
+def UpdateValues(CoinIn) # Recieve a single coin and update all relevent counts & values
+	if CoinIn == "":     # Update All Values from current Counts
+		ValueQuarter = (CountQuarter * .25)
+		ValueDime = (CountDime * .10)
+		ValueNickle = (CountNickle * .05)
+		ValuePenny = (CountPenny * .01)
+		TotalsUpdate()
+	elif CoinIn == "Q":  # Quarter
+		CountQuarter += 1
+		ValueQuarter = (CountQuarter * .25)		
+		TotalsUpdate()
+	elif CoinIn == "D":  # Dime
+		CountDime += 1
+		ValueDime = (CountDime * .25)
+		TotalsUpdate()
+	elif CoinIn == "N":  # Nickle
+		CountNickle += 1
+		ValueNickle = (CountNickle * .25)
+		TotalsUpdate()
+	elif CoinIn == "P":  # Penny
+		CountPenny += 1
+		ValuePenny = (CountPenny * .25)
+		TotalsUpdate()
+	else                 # If no input, do nothing
+		return()
+		
+def TotalsUpdate() # Update TotalCount and TotalValue
+	CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
+	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+
+		
