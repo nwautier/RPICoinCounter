@@ -25,36 +25,45 @@
 
 
 # Declarations and initializations
-global CountQuarter
+
 CountQuarter = 0
-global ValueQuarter
 ValueQuarter = .25
-global CountDime
 CountDime = 0
-global ValueDime
 ValueDime = .10
-global CountNickle
 CountNickle = 0
-global ValueNickle
 ValueNickle = .05
-global CountPenny
 CountPenny = 0
-global ValuePenny
 ValuePenny = .01
-global CountTotalCoins
 CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
-global ValueTotalCoins
 ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
 
-
-
 def TotalsUpdate(): # Update TotalCount and TotalValue
+	global CountQuarter
+	global ValueQuarter
+	global CountDime
+	global ValueDime
+	global CountNickle
+	global ValueNickle
+	global CountPenny
+	global ValuePenny
+	global CountTotalCoins
+	global ValueTotalCoins
 	CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
 	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
 
 TotalsUpdate()
 
 def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
+	global CountQuarter
+	global ValueQuarter
+	global CountDime
+	global ValueDime
+	global CountNickle
+	global ValueNickle
+	global CountPenny
+	global ValuePenny
+	global CountTotalCoins
+	global ValueTotalCoins
 	CoinIn = CoinIn.upper()
 	if CoinIn == "RESET":     # Update All Values from current Counts
 		ValueQuarter = (CountQuarter * .25)
@@ -68,23 +77,32 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		TotalsUpdate()
 	elif CoinIn == "D":  # Dime
 		CountDime += 1
-		ValueDime = (CountDime * .25)
+		ValueDime = (CountDime * .10)
 		TotalsUpdate()
 	elif CoinIn == "N":  # Nickle
 		CountNickle += 1
-		ValueNickle = (CountNickle * .25)
+		ValueNickle = (CountNickle * .05)
 		TotalsUpdate()
 	elif CoinIn == "P":  # Penny
 		CountPenny += 1
-		ValuePenny = (CountPenny * .25)
+		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
 	else:                 # If no input, do nothing
 		return()
 
-def ListCount():
-		print ("  Q    D    N    P  ")
-		print ("  %s    %s    %s    %s  ") % (CountQuarter, CountDime, CountNickle, CountPenny)
+UpdateValues("RESET")
 
+def ListCount():
+		print ("Quarters")
+		print (CountQuarter, ValueQuarter)
+		print ("Dimes")
+		print (CountDime, ValueDime)
+		print ("Nickles")
+		print (CountNickle, ValueNickle)
+		print ("Pennies")
+		print (CountPenny, ValuePenny)
+		print ("Totals")
+		print (CountTotalCoins, ValueTotalCoins)
 
 global a
 a="FIRST RUN"
