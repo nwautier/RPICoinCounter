@@ -21,21 +21,21 @@
 #  MA 02110-1301, USA.
 #  
 #  
-
+from decimal import *
 
 
 # Declarations and initializations
 
 CountQuarter = 0
-ValueQuarter = .25
+ValueQuarter = 0
 CountDime = 0
-ValueDime = .10
+ValueDime = 0
 CountNickel = 0
-ValueNickel = .05
+ValueNickel = 0
 CountPenny = 0
-ValuePenny = .01
-CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
-ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
+ValuePenny = 0
+CountTotalCoins = CountQuarter + CountDime + CountNickel + CountPenny
+ValueTotalCoins = ValueQuarter + ValueDime + ValueNickel + ValuePenny
 
 def TotalsUpdate(): # Update TotalCount and TotalValue
 	global CountQuarter
@@ -79,9 +79,9 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		CountDime += 1
 		ValueDime = (CountDime * .10)
 		TotalsUpdate()
-	elif CoinIn == "N":  # Nickel
+	elif CoinIn == "N":  # Nickels
 		CountNickel += 1
-		ValueNickel = Decimal(CountNickel * .05).quantize(Decimal('.01'), rounding=ROUND_DOWN)
+		ValueNickel = CountNickel * .05
 		TotalsUpdate()
 	elif CoinIn == "P":  # Penny
 		CountPenny += 1
@@ -94,15 +94,15 @@ UpdateValues("RESET")
 
 def ListCount():
 		print ("Quarters")
-		print (CountQuarter, ValueQuarter) #Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP))
+		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Dimes")
-		print (CountDime, ValueDime)
+		print (CountDime, Decimal(Decimal(ValueDime).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Nickels")
-		print (CountNickel, ValueNickel)
+		print (CountNickel, Decimal(Decimal(ValueNickel).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Pennies")
-		print (CountPenny, ValuePenny)
+		print (CountPenny, Decimal(Decimal(ValuePenny).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Totals")
-		print (CountTotalCoins, ValueTotalCoins)
+		print (CountTotalCoins, Decimal(Decimal(ValueTotalCoins).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 
 global a
 a="FIRST RUN"
