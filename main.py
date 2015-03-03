@@ -30,26 +30,26 @@ CountQuarter = 0
 ValueQuarter = .25
 CountDime = 0
 ValueDime = .10
-CountNickle = 0
-ValueNickle = .05
+CountNickel = 0
+ValueNickel = .05
 CountPenny = 0
 ValuePenny = .01
-CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
-ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
+ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
 
 def TotalsUpdate(): # Update TotalCount and TotalValue
 	global CountQuarter
 	global ValueQuarter
 	global CountDime
 	global ValueDime
-	global CountNickle
-	global ValueNickle
+	global CountNickel
+	global ValueNickel
 	global CountPenny
 	global ValuePenny
 	global CountTotalCoins
 	global ValueTotalCoins
-	CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
-	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+	CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
+	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
 
 TotalsUpdate()
 
@@ -58,8 +58,8 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 	global ValueQuarter
 	global CountDime
 	global ValueDime
-	global CountNickle
-	global ValueNickle
+	global CountNickel
+	global ValueNickel
 	global CountPenny
 	global ValuePenny
 	global CountTotalCoins
@@ -68,7 +68,7 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == "RESET":     # Update All Values from current Counts
 		ValueQuarter = (CountQuarter * .25)
 		ValueDime = (CountDime * .10)
-		ValueNickle = (CountNickle * .05)
+		ValueNickel = (CountNickel * .05)
 		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
 	elif CoinIn == "Q":  # Quarter
@@ -79,9 +79,9 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		CountDime += 1
 		ValueDime = (CountDime * .10)
 		TotalsUpdate()
-	elif CoinIn == "N":  # Nickle
-		CountNickle += 1
-		ValueNickle = (CountNickle * .05)
+	elif CoinIn == "N":  # Nickel
+		CountNickel += 1
+		ValueNickel = Decimal(CountNickel * .05).quantize(Decimal('.01'), rounding=ROUND_DOWN)
 		TotalsUpdate()
 	elif CoinIn == "P":  # Penny
 		CountPenny += 1
@@ -94,11 +94,11 @@ UpdateValues("RESET")
 
 def ListCount():
 		print ("Quarters")
-		print (CountQuarter, ValueQuarter)
+		print (CountQuarter, ValueQuarter) #Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP))
 		print ("Dimes")
 		print (CountDime, ValueDime)
-		print ("Nickles")
-		print (CountNickle, ValueNickle)
+		print ("Nickels")
+		print (CountNickel, ValueNickel)
 		print ("Pennies")
 		print (CountPenny, ValuePenny)
 		print ("Totals")
