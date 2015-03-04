@@ -22,7 +22,7 @@
 #  
 #  
 from decimal import *
-
+import getch
 
 # Declarations and initializations
 
@@ -93,6 +93,7 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 UpdateValues("RESET")
 
 def ListCount():
+		print('\n')
 		print ("Quarters")
 		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Dimes")
