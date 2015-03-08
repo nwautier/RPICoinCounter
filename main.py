@@ -21,34 +21,59 @@
 #  MA 02110-1301, USA.
 #  
 #  
-
-
+from decimal import *
+import os
+import getch
 
 # Declarations and initializations
-CountQuarter = 0
-ValueQuarter = .25
-CountDime = 0
-ValueDime = .10
-CountNickle = 0
-ValueNickle = .05
-CountPenny = 0
-ValuePenny = .01
-CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
-ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
 
+CountQuarter = 0
+ValueQuarter = 0
+CountDime = 0
+ValueDime = 0
+CountNickel = 0
+ValueNickel = 0
+CountPenny = 0
+ValuePenny = 0
+CountTotalCoins = CountQuarter + CountDime + CountNickel + CountPenny
+ValueTotalCoins = ValueQuarter + ValueDime + ValueNickel + ValuePenny
 
 def TotalsUpdate(): # Update TotalCount and TotalValue
-	CountTotalCoins = (CountQuarter + CountDime + CountNickle + CountPenny)
-	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickle + ValuePenny)
+	global CountQuarter
+	global ValueQuarter
+	global CountDime
+	global ValueDime
+	global CountNickel
+	global ValueNickel
+	global CountPenny
+	global ValuePenny
+	global CountTotalCoins
+	global ValueTotalCoins
+	CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
+	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
 
 TotalsUpdate()
 
 def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
+	global CountQuarter
+	global ValueQuarter
+	global CountDime
+	global ValueDime
+	global CountNickel
+	global ValueNickel
+	global CountPenny
+	global ValuePenny
+	global CountTotalCoins
+	global ValueTotalCoins
 	CoinIn = CoinIn.upper()
-	if CoinIn == "":     # Update All Values from current Counts
+	if CoinIn == "RESET":     # Reset All Values and counts to 0
+		CountQuarter = 0
+		CountDime = 0
+		CountNickel = 0
+		CountPenny = 0
 		ValueQuarter = (CountQuarter * .25)
 		ValueDime = (CountDime * .10)
-		ValueNickle = (CountNickle * .05)
+		ValueNickel = (CountNickel * .05)
 		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
 	elif CoinIn == "Q":  # Quarter
@@ -57,15 +82,38 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		TotalsUpdate()
 	elif CoinIn == "D":  # Dime
 		CountDime += 1
-		ValueDime = (CountDime * .25)
+		ValueDime = (CountDime * .10)
 		TotalsUpdate()
-	elif CoinIn == "N":  # Nickle
-		CountNickle += 1
-		ValueNickle = (CountNickle * .25)
+	elif CoinIn == "N":  # Nickels
+		CountNickel += 1
+		ValueNickel = CountNickel * .05
 		TotalsUpdate()
 	elif CoinIn == "P":  # Penny
 		CountPenny += 1
-		ValuePenny = (CountPenny * .25)
+		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
 	else:                 # If no input, do nothing
 		return()
+
+UpdateValues("RESET")
+
+def ListCount():
+		os.system('cls' if os.name == 'nt' else 'clear')
+		print ("Quarters")
+		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
+		print ("Dimes")
+		print (CountDime, Decimal(Decimal(ValueDime).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
+		print ("Nickels")
+		print (CountNickel, Decimal(Decimal(ValueNickel).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
+		print ("Pennies")
+		print (CountPenny, Decimal(Decimal(ValuePenny).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
+		print ("Totals")
+		print (CountTotalCoins, Decimal(Decimal(ValueTotalCoins).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
+
+global a
+a="FIRST RUN"
+
+while a:
+	ListCount()
+	a=input("Whatcha Got?")
+	UpdateValues(a)
