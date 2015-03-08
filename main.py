@@ -22,6 +22,7 @@
 #  
 #  
 from decimal import *
+import os
 import getch
 
 # Declarations and initializations
@@ -65,7 +66,11 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 	global CountTotalCoins
 	global ValueTotalCoins
 	CoinIn = CoinIn.upper()
-	if CoinIn == "RESET":     # Update All Values from current Counts
+	if CoinIn == "RESET":     # Reset All Values and counts to 0
+		CountQuarter = 0
+		CountDime = 0
+		CountNickel = 0
+		CountPenny = 0
 		ValueQuarter = (CountQuarter * .25)
 		ValueDime = (CountDime * .10)
 		ValueNickel = (CountNickel * .05)
@@ -93,7 +98,7 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 UpdateValues("RESET")
 
 def ListCount():
-		print('\n')
+		os.system('cls' if os.name == 'nt' else 'clear')
 		print ("Quarters")
 		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 		print ("Dimes")
