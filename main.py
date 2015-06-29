@@ -2,25 +2,25 @@
 # -*- coding: utf-8 -*-
 #
 #  main.py
-#  
+#
 #  Copyright 2015 Nicholas Wautier <nicholas dot wautier at wautierent dot com>
-#  
+#
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
 #  the Free Software Foundation; either version 2 of the License, or
 #  (at your option) any later version.
-#  
+#
 #  This program is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU General Public License for more details.
-#  
+#
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
-#  
-#  
+#
+#
 from decimal import *
 import os
 import getch
@@ -66,7 +66,7 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 	global CountTotalCoins
 	global ValueTotalCoins
 	CoinIn = CoinIn.upper()
-	if CoinIn == "RESET":     # Reset All Values and counts to 0
+	if CoinIn == b'R':     # Reset All Values and counts to 0
 		CountQuarter = 0
 		CountDime = 0
 		CountNickel = 0
@@ -76,27 +76,28 @@ def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
 		ValueNickel = (CountNickel * .05)
 		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
-	elif CoinIn == "Q":  # Quarter
+	elif CoinIn == b'Q':  # Quarter
 		CountQuarter += 1
-		ValueQuarter = (CountQuarter * .25)		
+		ValueQuarter = (CountQuarter * .25)
 		TotalsUpdate()
-	elif CoinIn == "D":  # Dime
+	elif CoinIn == b'D':  # Dime
 		CountDime += 1
 		ValueDime = (CountDime * .10)
 		TotalsUpdate()
-	elif CoinIn == "N":  # Nickels
+	elif CoinIn == b'N':  # Nickels
 		CountNickel += 1
 		ValueNickel = CountNickel * .05
 		TotalsUpdate()
-	elif CoinIn == "P":  # Penny
+	elif CoinIn == b'P':  # Penny
 		CountPenny += 1
 		ValuePenny = (CountPenny * .01)
 		TotalsUpdate()
+	elif CoinIn == b'X':  # Exit Request
+		return('X')
 	else:                 # If no input, do nothing
 		return()
 
-UpdateValues("RESET")
-
+UpdateValues("R")
 def ListCount():
 		os.system('cls' if os.name == 'nt' else 'clear')
 		print ("Quarters")
@@ -111,9 +112,9 @@ def ListCount():
 		print (CountTotalCoins, Decimal(Decimal(ValueTotalCoins).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
 
 global a
-a="FIRST RUN"
+a = "a"
 
-while a:
+while a != b'X':
 	ListCount()
-	a=input("Whatcha Got?")
+	a = getch.getch()
 	UpdateValues(a)
