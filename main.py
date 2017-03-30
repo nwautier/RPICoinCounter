@@ -25,6 +25,10 @@ from decimal import *
 import os
 import getch
 
+import RPi.HPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+# SRC http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/
+
 # Declarations and initializations
 
 CountQuarter = 0
