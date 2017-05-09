@@ -19,4 +19,5 @@ I decided to do something about it.
 Rather than throwing it out and buying something better, I wanted to learn to make it better myself.  I'll document my progress thorughout, but here's where I will write the software that makes the coin counter work!
 
 Here's a link to where you can get an inexpensive sorter of your own:
-  http://www.amazon.com/gp/product/B005MXHSZA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B005MXHSZA&linkCode=as2&tag=sentow-20&linkId=4WRN7VEGTM4IERDD
+  hhttp://amzn.to/2qWRuUl
+ 
