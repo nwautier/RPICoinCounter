@@ -4,7 +4,7 @@ A hardware/software solution to count unsorted coins using a Raspberry PI B+.
 ---------------
 
 Release Candidate 0.1.1 is now available!
-This is a fully-functioning version of the core product that runs in Python 3.4.3.
+This is a fully-functioning version of the core product that runs in Python 3.x.x. (Most Recently Tested in 3.6.1)
 
 Raspberry PI is currently unsupported.  RPI support is the cornerstone of RC 0.2.0, slated for release whenever someone gets around to it.
 
