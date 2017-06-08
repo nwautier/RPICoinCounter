@@ -21,50 +21,36 @@
 #  MA 02110-1301, USA.
 #
 #
+
 from decimal import *
 import os
 import getch
 
 # Declarations and initializations
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # TOKEN is  a user configurable list of countable objects.  Each object is a list in itself
+    # The first sub-object should be the keystroke entered to count that token type.
+    # The second sub-object should be the quantity of that value that has been counted.
+    # The third sub-object should be the value of a single unit of that object.
+    # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+Token = [["P",0,.01,"Penny"],["N",0,.05,"Nickel"],["D",0,.10,"Dime"],["Q",0,.25,"Quarter"]]
 
-CountQuarter = 0
-ValueQuarter = 0
-CountDime = 0
-ValueDime = 0
-CountNickel = 0
-ValueNickel = 0
-CountPenny = 0
-ValuePenny = 0
-CountTotalCoins = CountQuarter + CountDime + CountNickel + CountPenny
-ValueTotalCoins = ValueQuarter + ValueDime + ValueNickel + ValuePenny
-
-def TotalsUpdate(): # Update TotalCount and TotalValue
-	global CountQuarter
-	global ValueQuarter
-	global CountDime
-	global ValueDime
-	global CountNickel
-	global ValueNickel
-	global CountPenny
-	global ValuePenny
-	global CountTotalCoins
-	global ValueTotalCoins
-	CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
-	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
-
+TotalCoinCount = 0
+TotalCoinValue = 0
 TotalsUpdate()
 
+def TotalsUpdate(): # Update TotalCount and TotalValue
+	global Token
+	TotalCoinCount = 0
+	TotalCoinValue = 0
+	for i in Token:
+		TotalCoinCount += Token[1][i]
+		TotalValue += Token[1][i] * Token[2][i]
+#############################
+
 def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
-	global CountQuarter
-	global ValueQuarter
-	global CountDime
-	global ValueDime
-	global CountNickel
-	global ValueNickel
-	global CountPenny
-	global ValuePenny
-	global CountTotalCoins
-	global ValueTotalCoins
+	global Token
 	CoinIn = CoinIn.upper()
 	if CoinIn == b'R':     # Reset All Values and counts to 0
 		CountQuarter = 0
