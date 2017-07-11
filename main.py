@@ -20,7 +20,6 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #
-#
 
 from decimal import *
 import os
@@ -36,71 +35,39 @@ import getch
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 Token = [["P",0,.01,"Penny"],["N",0,.05,"Nickel"],["D",0,.10,"Dime"],["Q",0,.25,"Quarter"]]
 
-TotalCoinCount = 0
-TotalCoinValue = 0
-TotalsUpdate()
-
 def TotalsUpdate(): # Update TotalCount and TotalValue
 	global Token
 	TotalCoinCount = 0
 	TotalCoinValue = 0
 	for i in Token:
-		TotalCoinCount += Token[1][i]
-		TotalValue += Token[1][i] * Token[2][i]
-#############################
+		TotalCoinCount += Token[i][1]
+		TotalValue += (Token[i][1] * Token[i][2])
 
-def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
+def Input(CoinIn): # Recieve a coin, update all total counts and values
+# In Progress
 	global Token
 	CoinIn = CoinIn.upper()
 	if CoinIn == b'R':     # Reset All Values and counts to 0
-		CountQuarter = 0
-		CountDime = 0
-		CountNickel = 0
-		CountPenny = 0
-		ValueQuarter = (CountQuarter * .25)
-		ValueDime = (CountDime * .10)
-		ValueNickel = (CountNickel * .05)
-		ValuePenny = (CountPenny * .01)
-		TotalsUpdate()
-	elif CoinIn == b'Q':  # Quarter
-		CountQuarter += 1
-		ValueQuarter = (CountQuarter * .25)
-		TotalsUpdate()
-	elif CoinIn == b'D':  # Dime
-		CountDime += 1
-		ValueDime = (CountDime * .10)
-		TotalsUpdate()
-	elif CoinIn == b'N':  # Nickels
-		CountNickel += 1
-		ValueNickel = CountNickel * .05
-		TotalsUpdate()
-	elif CoinIn == b'P':  # Penny
-		CountPenny += 1
-		ValuePenny = (CountPenny * .01)
-		TotalsUpdate()
+		# Reset Code Goes Here
+		return('X')
 	elif CoinIn == b'X':  # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
-		return()
+		for i in Token:
+			if CoinIn == Token[i][0]:
+				Token[i][1] += 1
 
-UpdateValues("R")
-def ListCount():
+def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
-		print ("Quarters")
-		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Dimes")
-		print (CountDime, Decimal(Decimal(ValueDime).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Nickels")
-		print (CountNickel, Decimal(Decimal(ValueNickel).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Pennies")
-		print (CountPenny, Decimal(Decimal(ValuePenny).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Totals")
-		print (CountTotalCoins, Decimal(Decimal(ValueTotalCoins).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-
+		for i in Token:
+			print(Token[i][3])
+			print(Token[i][1], Decimal(Decimal(Token[i][1] * Token[i][2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
+			print(TotalCoinCount)
+			print(TotalCoinValue)
 global a
 a = "a"
 
 while a != b'X':
-	ListCount()
+	PrintList()
 	a = getch.getch()
-	UpdateValues(a)
+	Input(a)
