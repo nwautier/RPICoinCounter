@@ -34,25 +34,13 @@ import getch
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-Token = [['P',0,.01,"Penny"],['N',0,.05,"Nickel"],['D',0,.10,"Dime"],['Q',0,.25,"Quarter"]]
+Token = [['P',10,.01,"Penny"],['N',10,.05,"Nickel"],['D',10,.10,"Dime"],['Q',10,.25,"Quarter"]]
 
-def TotalsUpdate(): # Update TotalCount and TotalValue
-	global Token
-	TotalCoinCount = 0
-	TotalCoinValue = 0
-	for i in Token:
-		TotalCoinCount += i[1]
-		TotalValue += (i[1] * i[2])
-
-def Input(CoinIn): # Recieve a coin, update all total counts and values
-# In Progress
-	global Token
+def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
-		# Reset Code Goes Here
 		for i in Token:
-			i[1] == 0
-			PrintList()
-	elif CoinIn == b'X':  # Exit Request
+			i[1] = 0
+	elif CoinIn == b'X':   # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
 		for i in Token:
@@ -61,16 +49,19 @@ def Input(CoinIn): # Recieve a coin, update all total counts and values
 
 def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
+		TotalCoinCount = 0
+		TotalCoinValue = 0
 		for i in Token:
 			print (i[3])
+			TotalCoinCount += i[1]
 			print (i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
-#			print (TotalCoinCount)
-#			print (TotalCoinValue)
-
+#			TotalCoinValue += ((i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))) # # # # # MAKE THIS WORK # # # # #
+		print ("Total Coins", TotalCoinCount)
+		print ("Total Value", TotalCoinValue)
 global a
 a = "a"
 while a != b'X':
 	PrintList()
 	a = getch.getch()
 	a = a.upper()
-	Input(a)
+	GetKey(a)
