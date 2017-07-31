@@ -19,8 +19,9 @@ I decided to do something about it.
 Rather than throwing it out and buying something better, I wanted to learn to make it better myself.  I'll document my progress thorughout, but here's where I will write the software that makes the coin counter work!
 
 Here's a link to where you can get an inexpensive sorter of your own:
-<<<<<<< HEAD
-   http://www.amazon.com/gp/product/B005MXHSZA/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B005MXHSZA&linkCode=as2&tag=sentow-20&linkId=4WRN7VEGTM4IERDD
+
+http://amzn.to/2uDZ1Ng
+
 ---------------
 Suggested Features (* Denotes Planned Integration)
 
@@ -38,7 +39,3 @@ Suggested Features (* Denotes Planned Integration)
   Support for non-currency counters
 ---------------
 As of now, this whole project is software.  I will work on building the hardware another day.
-=======
-  hhttp://amzn.to/2qWRuUl
- 
->>>>>>> refs/remotes/origin/master
