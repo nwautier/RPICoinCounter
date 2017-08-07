@@ -34,7 +34,7 @@ import getch
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-Token = [['P',10,.01,"Penny"],['N',10,.05,"Nickel"],['D',10,.10,"Dime"],['Q',10,.25,"Quarter"]]
+Token = [['P',0,.01,"Penny"],['N',0,.05,"Nickel"],['D',0,.10,"Dime"],['Q',0,.25,"Quarter"]]
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
