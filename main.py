@@ -34,7 +34,7 @@ import getch
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-Token = [['P',0,.01,"Penny"],['N',0,.05,"Nickel"],['D',0,.10,"Dime"],['Q',0,.25,"Quarter"]]
+Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"],[b'1',0,1.00,"Ones"],[b'5',0,5.00,"Fives"],[b'0',0,10.00,"Tens"],[b'2',0,20.00,"Twenties"]]
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
@@ -54,8 +54,9 @@ def PrintList():
 		for i in Token:
 			print (i[3])
 			TotalCoinCount += i[1]
-			print (i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
-#			TotalCoinValue += ((i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))) # # # # # MAKE THIS WORK # # # # #
+			adder = Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP))
+			print (i[1], adder)
+			TotalCoinValue += adder
 		print ("Total Coins", TotalCoinCount)
 		print ("Total Value", TotalCoinValue)
 global a
