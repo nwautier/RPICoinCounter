@@ -27,47 +27,41 @@ import getch
 
 # Declarations and initializations
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    # TOKEN is  a user configurable list of countable objects.  Each object is a list in itself
+    # TOKEN is a user configurable list of countable objects.  Each object is a list in itself
     # The first sub-object should be the keystroke entered to count that token type.
     # The second sub-object should be the quantity of that value that has been counted.
     # The third sub-object should be the value of a single unit of that object.
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-Token = [["P",0,.01,"Penny"],["N",0,.05,"Nickel"],["D",0,.10,"Dime"],["Q",0,.25,"Quarter"]]
 
-def TotalsUpdate(): # Update TotalCount and TotalValue
-	global Token
-	TotalCoinCount = 0
-	TotalCoinValue = 0
-	for i in Token:
-		TotalCoinCount += Token[i][1]
-		TotalValue += (Token[i][1] * Token[i][2])
+Token = [['P',0,.01,"Penny"],['N',0,.05,"Nickel"],['D',0,.10,"Dime"],['Q',0,.25,"Quarter"]]
 
-def Input(CoinIn): # Recieve a coin, update all total counts and values
-# In Progress
-	global Token
-	CoinIn = CoinIn.upper()
+def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
-		# Reset Code Goes Here
-		return('X')
-	elif CoinIn == b'X':  # Exit Request
+		for i in Token:
+			i[1] = 0
+	elif CoinIn == b'X':   # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
 		for i in Token:
-			if CoinIn == Token[i][0]:
-				Token[i][1] += 1
+			if CoinIn == i[0]:
+				i[1] += 1
 
 def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
+		TotalCoinCount = 0
+		TotalCoinValue = 0
 		for i in Token:
-			print(Token[i][3])
-			print(Token[i][1], Decimal(Decimal(Token[i][1] * Token[i][2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
-			print(TotalCoinCount)
-			print(TotalCoinValue)
+			print (i[3])
+			TotalCoinCount += i[1]
+			print (i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
+#			TotalCoinValue += ((i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))) # # # # # MAKE THIS WORK # # # # #
+		print ("Total Coins", TotalCoinCount)
+		print ("Total Value", TotalCoinValue)
 global a
 a = "a"
-
 while a != b'X':
 	PrintList()
 	a = getch.getch()
-	Input(a)
+	a = a.upper()
+	GetKey(a)
