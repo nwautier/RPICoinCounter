@@ -59,10 +59,8 @@ def PrintList():
 			TotalCoinValue += adder
 		print ("Total Coins", TotalCoinCount)
 		print ("Total Value", TotalCoinValue)
-global a
 a = "a"
 while a != b'X':
 	PrintList()
-	a = getch.getch()
-	a = a.upper()
+	a = getch.getch().upper()
 	GetKey(a)
