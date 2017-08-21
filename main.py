@@ -25,6 +25,7 @@ from decimal import *
 import os
 import getch
 
+
 import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BOARD)
 # SRC http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/
