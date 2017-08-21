@@ -20,101 +20,48 @@
 #  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 #  MA 02110-1301, USA.
 #
-#
+
 from decimal import *
 import os
 import getch
 
 # Declarations and initializations
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    # TOKEN is a user configurable list of countable objects.  Each object is a list in itself
+    # The first sub-object should be the keystroke entered to count that token type.
+    # The second sub-object should be the quantity of that value that has been counted.
+    # The third sub-object should be the value of a single unit of that object.
+    # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-CountQuarter = 0
-ValueQuarter = 0
-CountDime = 0
-ValueDime = 0
-CountNickel = 0
-ValueNickel = 0
-CountPenny = 0
-ValuePenny = 0
-CountTotalCoins = CountQuarter + CountDime + CountNickel + CountPenny
-ValueTotalCoins = ValueQuarter + ValueDime + ValueNickel + ValuePenny
+Token = [['P',0,.01,"Penny"],['N',0,.05,"Nickel"],['D',0,.10,"Dime"],['Q',0,.25,"Quarter"]]
 
-def TotalsUpdate(): # Update TotalCount and TotalValue
-	global CountQuarter
-	global ValueQuarter
-	global CountDime
-	global ValueDime
-	global CountNickel
-	global ValueNickel
-	global CountPenny
-	global ValuePenny
-	global CountTotalCoins
-	global ValueTotalCoins
-	CountTotalCoins = (CountQuarter + CountDime + CountNickel + CountPenny)
-	ValueTotalCoins = (ValueQuarter + ValueDime + ValueNickel + ValuePenny)
-
-TotalsUpdate()
-
-def UpdateValues(CoinIn): # Recieve a coin, update all total counts and values
-	global CountQuarter
-	global ValueQuarter
-	global CountDime
-	global ValueDime
-	global CountNickel
-	global ValueNickel
-	global CountPenny
-	global ValuePenny
-	global CountTotalCoins
-	global ValueTotalCoins
-	CoinIn = CoinIn.upper()
+def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
-		CountQuarter = 0
-		CountDime = 0
-		CountNickel = 0
-		CountPenny = 0
-		ValueQuarter = (CountQuarter * .25)
-		ValueDime = (CountDime * .10)
-		ValueNickel = (CountNickel * .05)
-		ValuePenny = (CountPenny * .01)
-		TotalsUpdate()
-	elif CoinIn == b'Q':  # Quarter
-		CountQuarter += 1
-		ValueQuarter = (CountQuarter * .25)
-		TotalsUpdate()
-	elif CoinIn == b'D':  # Dime
-		CountDime += 1
-		ValueDime = (CountDime * .10)
-		TotalsUpdate()
-	elif CoinIn == b'N':  # Nickels
-		CountNickel += 1
-		ValueNickel = CountNickel * .05
-		TotalsUpdate()
-	elif CoinIn == b'P':  # Penny
-		CountPenny += 1
-		ValuePenny = (CountPenny * .01)
-		TotalsUpdate()
-	elif CoinIn == b'X':  # Exit Request
+		for i in Token:
+			i[1] = 0
+	elif CoinIn == b'X':   # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
-		return()
+		for i in Token:
+			if CoinIn == i[0]:
+				i[1] += 1
 
-UpdateValues("R")
-def ListCount():
+def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
-		print ("Quarters")
-		print (CountQuarter, Decimal(Decimal(ValueQuarter).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Dimes")
-		print (CountDime, Decimal(Decimal(ValueDime).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Nickels")
-		print (CountNickel, Decimal(Decimal(ValueNickel).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Pennies")
-		print (CountPenny, Decimal(Decimal(ValuePenny).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-		print ("Totals")
-		print (CountTotalCoins, Decimal(Decimal(ValueTotalCoins).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)))
-
+		TotalCoinCount = 0
+		TotalCoinValue = 0
+		for i in Token:
+			print (i[3])
+			TotalCoinCount += i[1]
+			print (i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))
+#			TotalCoinValue += ((i[1], Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)))) # # # # # MAKE THIS WORK # # # # #
+		print ("Total Coins", TotalCoinCount)
+		print ("Total Value", TotalCoinValue)
 global a
 a = "a"
-
 while a != b'X':
-	ListCount()
+	PrintList()
 	a = getch.getch()
-	UpdateValues(a)
+	a = a.upper()
+	GetKey(a)
