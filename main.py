@@ -25,6 +25,11 @@ from decimal import *
 import os
 import getch
 
+
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BOARD)
+# SRC http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/
+
 # Declarations and initializations
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     # TOKEN is a user configurable list of countable objects.  Each object is a list in itself
