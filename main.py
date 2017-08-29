@@ -70,6 +70,6 @@ a = "a"
 LoadConfig()
 print (Token)  # DEBUG LINE # #####################################################
 while a != b'X':
-#	PrintList()
+#	PrintList()# DEBUG LINE # #####################################################
 	a = getch.getch().upper()
 	GetKey(a)
