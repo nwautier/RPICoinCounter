@@ -33,8 +33,13 @@ import getch
     # The third sub-object should be the value of a single unit of that object.
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"]]
 
-Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"],[b'1',0,1.00,"Ones"],[b'5',0,5.00,"Fives"],[b'0',0,10.00,"Tens"],[b'2',0,20.00,"Twenties"]]
+def LoadConfig():
+	ConfigFile = open("config.txt", 'r')
+	for ReadLine in ConfigFile:
+		AppendLine = ReadLine.split(',')
+		Token.append(AppendLine)
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
@@ -59,8 +64,12 @@ def PrintList():
 			TotalCoinValue += adder
 		print ("Total Coins", TotalCoinCount)
 		print ("Total Value", TotalCoinValue)
+		print (Token)  # DEBUG LINE # #############################################
+
 a = "a"
+LoadConfig()
+print (Token)  # DEBUG LINE # #####################################################
 while a != b'X':
-	PrintList()
+#	PrintList()
 	a = getch.getch().upper()
 	GetKey(a)

@@ -1,0 +1,2 @@
+b'G',0,1100.00,Gold
+b'W',0,5500.00,Wautierium
