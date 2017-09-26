@@ -35,16 +35,27 @@ import getch
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"]]
 
-def LoadConfig():
-	ConfigFile = open("config.txt", 'r')
-	for ReadLine in ConfigFile:
-		AppendLine = ReadLine.split(',')
-		Token.append(AppendLine)
+#def LoadConfig(): # NOT READY FOR THIS YET ########################################
+#	ConfigFile = open("config.txt", 'r')
+#	for ReadLine in ConfigFile:
+#		AppendLine = ReadLine.split(',')
+#		Token.append(AppendLine)
+def NewConfig(): # This block of code will erase the contents of Token and replace it with a new list of objects
+	ItemCount = int(input("How many types of items do you want to count?"))
+	while (ItemCount > 0):
+		bind = input("What key would you like to bind this item to?")
+		qty = int(input("How many of this item should we start with?"))
+		value = Decimal(input("How much is one unit of this item worth?"))
+		name = input("What is the name of this item?")
+		ItemCount -= 1
+
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
 		for i in Token:
 			i[1] = 0
+	elif CoinIn == b'*':
+		NewConfig()
 	elif CoinIn == b'X':   # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
@@ -64,12 +75,12 @@ def PrintList():
 			TotalCoinValue += adder
 		print ("Total Coins", TotalCoinCount)
 		print ("Total Value", TotalCoinValue)
-		print (Token)  # DEBUG LINE # #############################################
+		print (Token)  # DEBUG LINE # ##############################################
 
 a = "a"
-LoadConfig()
-print (Token)  # DEBUG LINE # #####################################################
+# LoadConfig() # DEBUG LINE # ######################################################
+print (Token)  # DEBUG LINE # ######################################################
 while a != b'X':
-#	PrintList()# DEBUG LINE # #####################################################
+	PrintList() # DEBUG LINE # #####################################################
 	a = getch.getch().upper()
 	GetKey(a)
