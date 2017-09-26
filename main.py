@@ -47,8 +47,10 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 		qty = int(input("How many of this item should we start with?"))
 		value = Decimal(input("How much is one unit of this item worth?"))
 		name = input("What is the name of this item?")
+		# AddToken( bind, qty, value, name ) ###############################################################
 		ItemCount -= 1
-
+def AddToken(K, int(Q), Decimal(v), N):  # This block f code will add items to the Token Array
+############################ WRITE THIS ####################################################################
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
