@@ -50,11 +50,7 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 		# AddToken( bind, qty, value, name ) ###############################################################
 		ItemCount -= 1
 def AddToken(k, q, v, n):  # This block f code will add items to the Token Array
-	TokenToAdd = []
-	TokenToAdd.append(k)
-	TokenToAdd.append(q)
-	TokenToAdd.append(v)
-	TokenToAdd.append(n)
+	TokenToAdd = [k,q,v,n]
 	Token.append(TokenToAdd)
 ############################ WRITE THIS ####################################################################
 
