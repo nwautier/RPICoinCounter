@@ -45,9 +45,8 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 	ItemCount = int(input("How many types of items do you want to count?"))
 	print("")
 	while (ItemCount > 0):
-		bind = input("What key would you like to bind this item to?")
-		bind.upper()
-		bind = b'bind'
+		print("What key would you like to bind this item to?")
+		bind = getch.getch().upper()
 		qty = int(input("How many of this item should we start with?"))
 		value = input("How much is one unit of this item worth?")
 		value = Decimal(value)
@@ -64,7 +63,7 @@ def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
 		for i in Token:
 			i[1] = 0
-	elif CoinIn== b'/':    # Add a new token to token configuration
+	elif CoinIn == b'/':    # Add a new token to token configuration
 		AddToken(b'U',0,2.25,"UltraCoin")
 	elif CoinIn == b'*':   # Start a new token  configuration
 		NewConfig()
@@ -95,4 +94,5 @@ print (Token)  # DEBUG LINE # ##################################################
 while a != b'X':
 	PrintList() # DEBUG LINE # #####################################################
 	a = getch.getch().upper()
+	print(a)
 	GetKey(a)
