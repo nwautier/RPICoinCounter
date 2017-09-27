@@ -49,13 +49,21 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 		name = input("What is the name of this item?")
 		# AddToken( bind, qty, value, name ) ###############################################################
 		ItemCount -= 1
-def AddToken(K, int(Q), Decimal(v), N):  # This block f code will add items to the Token Array
+def AddToken(k, q, v, n):  # This block f code will add items to the Token Array
+	TokenToAdd = []
+	TokenToAdd.append(k)
+	TokenToAdd.append(q)
+	TokenToAdd.append(v)
+	TokenToAdd.append(n)
+	Token.append(TokenToAdd)
 ############################ WRITE THIS ####################################################################
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
 		for i in Token:
 			i[1] = 0
+	elif CoinIn== b'/':
+		AddToken(b'U',0,2.25,"UltraCoin")
 	elif CoinIn == b'*':
 		NewConfig()
 	elif CoinIn == b'X':   # Exit Request
