@@ -45,6 +45,15 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 	ItemCount = int(input("How many types of items do you want to count?"))
 	print("")
 	while (ItemCount > 0):
+		TokenDefInput()
+		ItemCount -= 1
+		print("")
+
+def AddToken(k, q, v, n):  # This block of code will add items to the Token Array
+	TokenToAdd = [k,q,v,n]
+	Token.append(TokenToAdd)
+
+def TokenDefInput():
 		print("What key would you like to bind this item to?")
 		bind = getch.getch().upper()
 		qty = int(input("How many of this item should we start with?"))
@@ -52,47 +61,41 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 		value = Decimal(value)
 		name = input("What is the name of this item?")
 		AddToken( bind, qty, value, name )
-		ItemCount -= 1
-		print("")
-def AddToken(k, q, v, n):  # This block of code will add items to the Token Array
-	TokenToAdd = [k,q,v,n]
-	Token.append(TokenToAdd)
-############################ WRITE THIS ####################################################################
 
-def GetKey(CoinIn): # Recieve a coin, update all total counts and values
-	if CoinIn == b'R':     # Reset All Values and counts to 0
+def GetKey(TokenIn): # Recieve a Token, update all total counts and values
+	if TokenIn == b'R':     # Reset All Values and counts to 0
 		for i in Token:
 			i[1] = 0
-	elif CoinIn == b'/':    # Add a new token to token configuration
-		AddToken(b'U',0,2.25,"UltraCoin")
-	elif CoinIn == b'*':   # Start a new token  configuration
+	elif TokenIn == b'/':    # Add a new token to token configuration
+		TokenDefInput()
+	elif TokenIn == b'*':   # Start a new token  configuration
 		NewConfig()
-	elif CoinIn == b'X':   # Exit Request
+	elif TokenIn == b'X':   # Exit Request
 		return('X')
 	else:                  # If no input, do nothing
 		for i in Token:
-			if CoinIn == i[0]:
+			if TokenIn == i[0]:
 				i[1] += 1
 
 def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
-		TotalCoinCount = 0
-		TotalCoinValue = 0
+		TotalTokenCount = 0
+		TotalTokenValue = 0
 		for i in Token:
 			print (i[3]) # Print Name of selected Toekn
-			TotalCoinCount += i[1]
+			TotalTokenCount += i[1]
 			adder = Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP)) # Calculate value of tokens
 			print (i[1], adder)
-			TotalCoinValue += adder
-		print ("Total Coins", TotalCoinCount)
-		print ("Total Value", TotalCoinValue)
-		print (Token)  # DEBUG LINE # ##############################################
+			TotalTokenValue += adder
+		print ("Total Tokens", TotalTokenCount)
+		print ("Total Value", TotalTokenValue)
+#		print (Token)  # DEBUG LINE # ##############################################
 
 a = "a"
 # LoadConfig() # DEBUG LINE # ######################################################
-print (Token)  # DEBUG LINE # ######################################################
+# print (Token)  # DEBUG LINE # ####################################################
 while a != b'X':
 	PrintList() # DEBUG LINE # #####################################################
 	a = getch.getch().upper()
-	print(a)
+#	print(a)    # DEBUG LINE # #####################################################
 	GetKey(a)
