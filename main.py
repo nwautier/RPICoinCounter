@@ -25,9 +25,6 @@ from decimal import *
 import os
 import getch
 
-
-import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BOARD)
 # SRC http://makezine.com/projects/tutorial-raspberry-pi-gpio-pins-and-python/
 
 # Declarations and initializations
@@ -37,20 +34,26 @@ GPIO.setmode(GPIO.BOARD)
     # The second sub-object should be the quantity of that value that has been counted.
     # The third sub-object should be the value of a single unit of that object.
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
+	# The fifth sub-object should be the number of objects to be placed in a wrapper.
+	# The sixth sub-object should be the number of sealed wrappers of this object.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"],[b'1',0,1.00,"Ones"],[b'5',0,5.00,"Fives"],[b'0',0,10.00,"Tens"],[b'2',0,20.00,"Twenties"]]
+Token = [[b'P',0,.01,"Penny",50,0],[b'N',0,.05,"Nickel",40,0],[b'D',0,.10,"Dime",50,0],[b'Q',0,.25,"Quarter",40,0],[b'1',0,1.00,"Ones",25,0]]
 
 def GetKey(CoinIn): # Recieve a coin, update all total counts and values
 	if CoinIn == b'R':     # Reset All Values and counts to 0
 		for i in Token:
 			i[1] = 0
+			i[5] = 0
 	elif CoinIn == b'X':   # Exit Request
 		return('X')
 	else:                 # If no input, do nothing
 		for i in Token:
 			if CoinIn == i[0]:
 				i[1] += 1
+				if i[1] > i[4]:
+					i[1] -= i[4]
+					i[5] += 1
 
 def PrintList():
 		os.system('cls' if os.name == 'nt' else 'clear')
@@ -59,9 +62,10 @@ def PrintList():
 		for i in Token:
 			print (i[3])
 			TotalCoinCount += i[1]
-			adder = Decimal(Decimal(i[1] * i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP))
-			print (i[1], adder)
+			adder = Decimal(Decimal((i[1]+(i[4]*i[5]))*i[2]).quantize(Decimal('.01'),rounding=ROUND_HALF_UP))
+			print (i[5], " Rolls &", i[1], "Loose", adder)
 			TotalCoinValue += adder
+
 		print ("Total Coins", TotalCoinCount)
 		print ("Total Value", TotalCoinValue)
 a = "a"
