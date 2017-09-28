@@ -1,2 +1,4 @@
-b'G',0,1100.00,Gold
-b'W',0,5500.00,Wautierium
+P,0,.01,Penny
+N,0,.05,Nickel
+D,0,.10,Dime
+Q,0,.25,Quarter

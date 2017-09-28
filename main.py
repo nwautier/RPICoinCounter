@@ -33,13 +33,13 @@ import getch
     # The third sub-object should be the value of a single unit of that object.
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-Token = [[b'P',0,.01,"Penny"],[b'N',0,.05,"Nickel"],[b'D',0,.10,"Dime"],[b'Q',0,.25,"Quarter"]]
+Token = []
+def LoadConfig(): # NOT READY FOR THIS YET ########################################
+	ConfigFile = open("config.txt", 'r')
+	for ReadLine in ConfigFile:
+		b,q,v,n = ReadLine.split(",")
+		AddToken( bytes(b, 'utf-8'), int(q), Decimal(v), n[:-1] )
 
-#def LoadConfig(): # NOT READY FOR THIS YET ########################################
-#	ConfigFile = open("config.txt", 'r')
-#	for ReadLine in ConfigFile:
-#		AppendLine = ReadLine.split(',')
-#		Token.append(AppendLine)
 def NewConfig(): # This block of code will erase the contents of Token and replace it with a new list of objects
 	del Token[:]
 	ItemCount = int(input("How many types of items do you want to count?"))
@@ -89,11 +89,11 @@ def PrintList():
 			TotalTokenValue += adder
 		print ("Total Tokens", TotalTokenCount)
 		print ("Total Value", TotalTokenValue)
-#		print (Token)  # DEBUG LINE # ##############################################
+		print (Token)  # DEBUG LINE # ##############################################
 
 a = "a"
-# LoadConfig() # DEBUG LINE # ######################################################
-# print (Token)  # DEBUG LINE # ####################################################
+LoadConfig() # DEBUG LINE # ######################################################
+print (Token)  # DEBUG LINE # ####################################################
 while a != b'X':
 	PrintList() # DEBUG LINE # #####################################################
 	a = getch.getch().upper()
