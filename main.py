@@ -44,6 +44,7 @@ def LoadConfig():
 def NewConfig(): # This block of code will erase the contents of Token and replace it with a new list of objects
 	del Token[:]
 	ItemCount = int(input("How many types of items do you want to count?"))
+	# ERROR HANDLER IF ItemCount IS NOT INTEGER ###################################
 	print("")
 	while (ItemCount > 0):
 		TokenDefInput()
