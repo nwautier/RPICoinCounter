@@ -52,6 +52,8 @@ def NewConfig(): # This block of code will erase the contents of Token and repla
 
 def AddToken(k, q, v, n):  # This block of code will add items to the Token Array
 	TokenToAdd = [k,q,v,n]
+	# Do we even need this code?  Is there a better way to refactor? ###############
+	# Shouldn't all errors be caught before this? ##################################
 	Token.append(TokenToAdd)
 
 def TokenDefInput():
