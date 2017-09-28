@@ -34,7 +34,8 @@ import getch
     # The fourth sub-object should be the string value name of the object being counted to be drawn on the screen.
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 Token = []
-def LoadConfig(): # NOT READY FOR THIS YET ########################################
+
+def LoadConfig():
 	ConfigFile = open("config.txt", 'r')
 	for ReadLine in ConfigFile:
 		b,q,v,n = ReadLine.split(",")
@@ -89,13 +90,11 @@ def PrintList():
 			TotalTokenValue += adder
 		print ("Total Tokens", TotalTokenCount)
 		print ("Total Value", TotalTokenValue)
-		print (Token)  # DEBUG LINE # ##############################################
-
+#		print (Token)  # DEBUG LINE # ##############################################
+####################### APPLICATION STARTS RUNNING HERE ############################
 a = "a"
-LoadConfig() # DEBUG LINE # ######################################################
-print (Token)  # DEBUG LINE # ####################################################
+LoadConfig()
 while a != b'X':
-	PrintList() # DEBUG LINE # #####################################################
+	PrintList()
 	a = getch.getch().upper()
-#	print(a)    # DEBUG LINE # #####################################################
 	GetKey(a)
