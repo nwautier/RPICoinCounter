@@ -37,9 +37,11 @@ Token = []
 
 def LoadConfig():
 	ConfigFile = open("config.txt", 'r')
+	# Catch "File Doesn't Exist Error", and reidrect to NewConfig() #################
 	for ReadLine in ConfigFile:
 		b,q,v,n = ReadLine.split(",")
 		AddToken( bytes(b, 'utf-8'), int(q), Decimal(v), n[:-1] )
+		# Many errors could happen here.  Cascade fix in AddToken? #################
 
 def NewConfig(): # This block of code will erase the contents of Token and replace it with a new list of objects
 	del Token[:]
