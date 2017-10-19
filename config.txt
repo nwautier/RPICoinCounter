@@ -1,4 +1,4 @@
 P,0,.01,Penny
-N,0,.05,Nickel
+N,0,.05,Nickels
 D,0,.10,Dime
 Q,0,.25,Quarter
