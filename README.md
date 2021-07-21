@@ -28,11 +28,11 @@ http://amzn.to/2uDZ1Ng
 Future Features
 
   Raspberry PI GPIO Support
-    Activate / Deactivate motor system, integrate numerous sensors on various GPIO pin configurations
+    -Activate / Deactivate motor system, integrate numerous sensors on various GPIO pin configurations
     
   Notify user when a coin wrapper is full
-    Perhaps haulting the counting process and waiting for input to restart
-    Perhaps changing the wrapper itself
+    -Perhaps haulting the counting process and waiting for input to restart
+    -Perhaps changing the wrapper itself
     
   External config file
   
